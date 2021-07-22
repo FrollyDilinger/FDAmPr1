@@ -1,24 +1,20 @@
 <?xml version="1.0"?>
 <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="1column"
       xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-
-
     <head>
         <css src="Amasty_FrdljModule::css/ecfire.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
         <referenceContainer name="content">
-            <container name="FrdljModule.main" htmlTag="div" htmlClass="main">
+            <container name="FrdljModule.main" htmlTag="div" htmlClass="form-add">
                 <block name="FrdljModule.choose" class="Amasty\FrdljModule\Block\Index"
                        template="Amasty_FrdljModule::index.phtml"/>
-                <block name="FrdljModule.create" class="Amasty\FrdljModule\Block\Index"
-                       template="Amasty_FrdljModule::chooseyourdestiny.phtml">
-                    <block name="FrdljModule.solate"
+                <block name="FrdljModule.create" class="Amasty\FrdljModule\Block\Form"
+                       template="Amasty_FrdljModule::form.phtml">
+                    <block name="FrdljModule.timeleft"
                            template="Amasty_FrdljModule::timetolive1.phtml"/>
                 </block>
-
             </container>
-
         </referenceContainer>
     </body>
 </page>

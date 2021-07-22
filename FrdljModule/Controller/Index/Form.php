@@ -9,7 +9,7 @@ use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Catalog\Api\ProductRepositoryInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 
-class Index extends Action
+class Form extends Action
 {
     /**
      * @var ProductRepositoryInterface
@@ -44,6 +44,8 @@ class Index extends Action
 
     public function execute()
     {
+
+
         $product = $this->ProductRepository->get('24-MB03');
         $quote = $this->checkoutSession->getQuote();
 
