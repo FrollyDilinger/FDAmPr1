@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="Amasty_FrdljModule" translate="label" sortOrder="10">
+            <label>What yoy want, baby...</label>
+        </tab>
+        <section id="frdli_config" translate="label" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+            <label>Frdli config on/off</label>
+            <tab>Amasty_FrdljModule</tab>
+            <resource>Amasty_FrdljModule::config</resource>
+            <group id="general" translate="label" sortOrder="2" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>General Configuration on/off</label>
+                <field id="enabled" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Is module enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="Hello_text" type="textarea" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Hi everyone</label>
+                    <validate>required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="qtyid" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>qty is on/off</label>
+                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                </field>
+
+            </group>
+        </section>
+    </system>
+</config>
