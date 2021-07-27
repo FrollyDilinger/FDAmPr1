@@ -22,9 +22,18 @@
                         <field id="enabled">1</field>
                     </depends>
                 </field>
-                <field id="qtyid" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                <field id="qtyField" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
                     <label>qty is on/off</label>
-                    <source_model>Magento\Config\Model\Config\Source\Enabledisable</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="qtyFieldCount" translate="label" type="text" sortOrder="4" showInDefault="1"
+                       showInWebsite="0"
+                       showInStore="0">
+                    <label>Count qty</label>
+                    <validate>validate-number</validate>
                 </field>
 
             </group>

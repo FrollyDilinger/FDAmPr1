@@ -44,15 +44,7 @@ class Index extends Action
 
     public function execute()
     {
-        $product = $this->ProductRepository->get('24-MB03');
-        $quote = $this->checkoutSession->getQuote();
 
-        if (!$quote->getId()) {
-            $quote->save();
-        }
-
-        $quote->addProduct($product, 2);
-        $quote->save();
         //echo "Type new wrllst";
         if($this->scopeConfig->isSetFlag('frdli_config/general/enabled')){
             return $this->resultFactory->create(ResultFactory::TYPE_PAGE);

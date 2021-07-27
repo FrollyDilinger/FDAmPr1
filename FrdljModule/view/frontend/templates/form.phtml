@@ -4,8 +4,16 @@
  */
 ?>
 <form action="<?php echo $block->getFormAction() ?>" method="post">
-    <input type="text" name="sku" placeholder="sku"/>
-    <input type="number" name="qty" placeholder="qty"/>
+
+        <input type="text" name="sku" placeholder="sku"/>
+
+
+    <?php if ($block->isFieldEnabled()) {
+    ?>
+    <input type="number" name="qty" placeholder="<?= $block->getFieldText() ?>"/>
+        <?php
+    }
+    ?>
     <div>
         <p>
             <?= $block->getChildHtml('FrdljModule.timeleft') ?>
