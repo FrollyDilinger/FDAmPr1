@@ -34,7 +34,7 @@ class Form extends \Magento\Framework\View\Element\Template
 
     public function getFormAction()
     {
-        return $this->getUrl('FrdljModule/Controller/Index/Form');
+        return $this -> getUrl('FrdljModule/Index/Form');
     }
 
 }

@@ -7,7 +7,6 @@ use Magento\Framework\App\Action\Context;
 use Magento\Framework\Controller\ResultFactory;
 use Magento\Checkout\Model\Session as CheckoutSession;
 use Magento\Catalog\Api\ProductRepositoryInterface;
-use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Message\ManagerInterface;
 
 class Form extends Action
@@ -25,12 +24,6 @@ class Form extends Action
     protected $checkoutSession;
 
     /**
-     * @var ScopeConfigInterface
-     */
-
-    protected $scopeConfig;
-
-    /**
      * @var ManagerInterface
      */
 
@@ -40,13 +33,11 @@ class Form extends Action
         Context $context,
         CheckoutSession $checkoutSession,
         ProductRepositoryInterface $ProductRepository,
-        ScopeConfigInterface $scopeConfig,
         ManagerInterface $messageManager
     )
     {
         $this->checkoutSession = $checkoutSession;
         $this->ProductRepository = $ProductRepository;
-        $this->scopeConfig = $scopeConfig;
         $this->messageManager = $messageManager;
         parent::__construct($context);
     }
@@ -65,20 +56,17 @@ class Form extends Action
             $this->ProductRepository->get($product);
             $this->checkoutSession->getQuote();
 
-            if (!$quote->getId()) {
-                $quote->save();
-            }
 
             $quote->addProduct($product, $quote);
             $quote->save();
 
-            $this->messageManager->addSuccessMessage('add to cart !');
+            $this->messageManager->addSuccessMessage("ok!");
 
 
-        $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
-        $resultRedirect->setUrl('/Amasty/FrdljModule/');
+            $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
+            $resultRedirect->setUrl('/Amasty/FrdljModule/');
 
-        return $resultRedirect;
+            return $resultRedirect;
 
 
         }

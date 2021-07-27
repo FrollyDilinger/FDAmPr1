@@ -3,14 +3,11 @@
  * @var Amasty\FrdljModule\Block\Form $block
  */
 ?>
-<form action="<?php echo $block->getFormAction() ?>" method="post">
-
-        <input type="text" name="sku" placeholder="sku"/>
-
-
+<form action="<?php echo $block->getFormAction() ?>" method="get">
+    <input type="text" name="sku" placeholder="sku"/>
     <?php if ($block->isFieldEnabled()) {
-    ?>
-    <input type="number" name="qty" placeholder="<?= $block->getFieldText() ?>"/>
+        ?>
+        <input type="number" name="qty" placeholder="<?= $block->getFieldText() ?>"/>
         <?php
     }
     ?>
