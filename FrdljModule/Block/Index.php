@@ -24,7 +24,4 @@ class Index extends \Magento\Framework\View\Element\Template
     {
         return $this->scopeConfig->getValue('frdli_config/general/Hello_text');
     }
-
-
-
 }

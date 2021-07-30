@@ -14,19 +14,16 @@ class Index extends Action
     /**
      * @var ProductRepositoryInterface
      */
-
     protected $ProductRepository;
 
     /**
      * @var  CheckoutSession
      */
-
     protected $checkoutSession;
 
     /**
      * @var ScopeConfigInterface
      */
-
     protected $scopeConfig;
 
     public function __construct(
@@ -38,21 +35,18 @@ class Index extends Action
     {
         $this->checkoutSession = $checkoutSession;
         $this->ProductRepository = $ProductRepository;
-        $this ->scopeConfig = $scopeConfig;
+        $this->scopeConfig = $scopeConfig;
         parent::__construct($context);
     }
 
     public function execute()
     {
-
         //echo "Type new wrllst";
-        if($this->scopeConfig->isSetFlag('frdli_config/general/enabled')){
+        if ($this->scopeConfig->isSetFlag('frdli_config/general/enabled')) {
             return $this->resultFactory->create(ResultFactory::TYPE_PAGE);
-        } else{
+        } else {
             die('oh, noooo');
         }
-
-
     }
 }
 

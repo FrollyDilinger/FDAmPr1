@@ -3,11 +3,11 @@
  * @var Amasty\FrdljModule\Block\Form $block
  */
 ?>
-<form action="<?php echo $block->getFormAction() ?>" method="get">
-    <input type="text" name="sku" placeholder="sku"/>
+<form action="<?php echo $block->getFormAction() ?>" method="post" data-mage-init='{"validation": {}}'>
+    <input type="text" name="sku" placeholder="sku" class="input-text required-entry"/>
     <?php if ($block->isFieldEnabled()) {
         ?>
-        <input type="number" name="qty" placeholder="<?= $block->getFieldText() ?>"/>
+        <input type="number" name="qty" placeholder="<?= $block->getFieldText() ?>" data-validate="{required:true, 'validate-greater-than-zero':true}" />
         <?php
     }
     ?>

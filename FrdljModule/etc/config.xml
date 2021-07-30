@@ -5,7 +5,7 @@
         <frdli_config>
             <general>
                 <enabled>0</enabled>
-                <qtyMode>0</qtyMode>
+                <qtyFieldCount>0</qtyFieldCount>
             </general>
         </frdli_config>
     </default>
