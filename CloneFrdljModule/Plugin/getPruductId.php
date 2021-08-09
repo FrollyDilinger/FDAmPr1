@@ -46,11 +46,6 @@
             $this->request->getParam('qty');
             $productSku = $this->request->getParam('sku');
 
-//            $this->eventManager->dispatch(
-//                'amasty_add_promo_product_to_cart',
-//                ['added_promo_product' => $productSku]
-//            );
-
             $productId = $this->productRepository->get($productSku)->getId();
             
             $this->request->setParam('product', $productId);
