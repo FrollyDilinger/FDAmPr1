@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="add_promo_sku">
+        <observer name="promoPruduct"
+                  instance="Amasty\CloneFrdljModule\Observer\AddPromoSku"/>
+    </event>
+</config>

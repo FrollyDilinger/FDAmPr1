@@ -9,6 +9,7 @@
     use Magento\Catalog\Api\ProductRepositoryInterface;
     use Magento\Framework\Exception\NoSuchEntityException;
     use Magento\Framework\Message\ManagerInterface;
+    use Magento\Framework\Event\ManagerInterface as EventManager;
     
     class Form extends Action
     {
@@ -27,22 +28,36 @@
          */
         protected $messageManager;
         
+        /**
+         * @var EventManager
+         */
+        private $eventManager;
+        
         public function __construct(
             Context                    $context,
             CheckoutSession            $checkoutSession,
             ProductRepositoryInterface $ProductRepository,
-            ManagerInterface           $messageManager
+            ManagerInterface           $messageManager,
+            EventManager               $eventManager
         )
         {
             $this->checkoutSession = $checkoutSession;
             $this->ProductRepository = $ProductRepository;
             $this->messageManager = $messageManager;
+            $this->eventManager = $eventManager;
+            
             parent::__construct($context);
         }
         
         public function execute()
         {
             $post = $this->getRequest()->getPost();
+            $product = $this->ProductRepository->get($post['sku']);
+            
+            $this->eventManager->dispatch(       // триггерим событие
+                'add_promo_sku',  // имя события
+                ['added_promo_product' => $product]       // данные, которые мы передаём
+            );
             
             $quote = $this->checkoutSession->getQuote();
             if (!$quote->getId()) {
@@ -64,7 +79,7 @@
                 $quote->addProduct($product, $post['qty']);
                 $quote->save();
                 
-                $this->messageManager->addSuccessMessage("ok!");
+                $this->messageManager->addSuccessMessage("item in cart,(v korzine on)->up here ");
             } else {
                 $this->messageManager->addErrorMessage("Prosil. Je. Simple");
                 $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
