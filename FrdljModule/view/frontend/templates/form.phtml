@@ -1,0 +1,39 @@
+<?php
+    /**
+     * @var Amasty\FrdljModule\Block\Form $block
+     */
+?>
+<form action="<?php echo $block->getFormAction() ?>" method="post" data-mage-init='{"validation": {}}'>
+    <div data-bind="scope: 'productAutocomplete'">
+        <!-- ko template: getTemplate() --> <!-- /ko -->
+    </div>
+    <?php if ($block->isFieldEnabled()) {
+        ?>
+        <input type="number" name="qty" placeholder="<?= $block->getFieldText() ?>"
+               data-validate="{required:true, 'validate-greater-than-zero':true}"/>
+        <?php
+    }
+    ?>
+    <div>
+        <p>
+            <?= $block->getChildHtml('FrdljModule.timeleft') ?>
+        </p>
+    </div>
+    <input type="submit"/>
+</form>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": {
+                "components": {
+                    "productAutocomplete": {
+                        "component": "Amasty_FrdljModule/js/koAutocomplete",
+                        "template": "Amasty_FrdljModule/koAutocomplete"
+                    }
+                }
+            }
+        }
+    }
+
+</script>

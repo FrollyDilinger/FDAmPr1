@@ -1,0 +1,11 @@
+<label for="sku">Вводим Ску</label>
+<input type="text" name="sku" id="sku" placeholder="sku" data-validate='{"required":true}'
+       data-bind="textInput: searchText">
+<div>
+    <ul data-bind="foreach: searchResult">
+        <li id="columnBorder">
+            <span data-bind="text: sku"></span>
+            <span data-bind="text: name"></span>
+        </li>
+    </ul>
+</div>
