@@ -13,4 +13,6 @@
 .page-wrapper {
     border: 10px solid red
 }
-
+#columnBorder{
+    border: 3px solid;
+}
