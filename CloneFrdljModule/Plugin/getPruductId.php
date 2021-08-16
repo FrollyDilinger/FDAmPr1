@@ -47,6 +47,5 @@
             $productSku = $this->request->getParam('sku');
             $productId = $this->productRepository->get($productSku)->getId();
             $this->request->setParam('product', $productId);
-            
         }
     }

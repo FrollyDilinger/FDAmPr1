@@ -10,6 +10,8 @@
     use Magento\Framework\Exception\NoSuchEntityException;
     use Magento\Framework\Message\ManagerInterface;
     use Magento\Framework\Event\ManagerInterface as EventManager;
+    use Amasty\FrdljModule\Model\ResourceModel\BlackListModel as BlackRes;
+    use Amasty\FrdljModule\Model\BlackListModelFactory;
     
     class Form extends Action
     {
@@ -32,13 +34,25 @@
          * @var EventManager
          */
         private $eventManager;
+        /**
+         * @var BlackListModelFactory
+         */
+        
+        private $blackListModelFactory;
+        /**
+         * @var BlackRes
+         */
+        
+        private $blackRes;
         
         public function __construct(
             Context                    $context,
             CheckoutSession            $checkoutSession,
             ProductRepositoryInterface $ProductRepository,
             ManagerInterface           $messageManager,
-            EventManager               $eventManager
+            EventManager               $eventManager,
+            BlackListModelFactory      $blackListModelFactory,
+            BlackRes                   $blackRes
         )
         {
             $this->checkoutSession = $checkoutSession;
@@ -47,6 +61,8 @@
             $this->eventManager = $eventManager;
             
             parent::__construct($context);
+            $this->blackListModelFactory = $blackListModelFactory;
+            $this->blackRes = $blackRes;
         }
         
         public function execute()
@@ -74,12 +90,29 @@
                 return $resultRedirect;
             }
             
+            $blackList = $this->blackListModelFactory->create();
+            $this->blackRes->load(
+                $blackList,
+                $post['sku'],
+                'product_sku'
+            );
+            
             if ($product->getTypeId() == 'simple') {
+                if ($post['sku'] === $blackList->getProduct_sku()) {
+                    if ($post['qty'] <= $blackList->getProduct_qty()) {
+                        $quote->addProduct($product, $post['qty']);
+                        $quote->save();
+                        $this->messageManager->addSuccessMessage("black item in cart in cart,");
+                    } else {
+                        $this->messageManager->addErrorMessage("This position is not available now");
+                    }
+                } else {
+                    $quote->addProduct($product, $post['qty']);
+                    $quote->save();
+                    
+                    $this->messageManager->addSuccessMessage("item in cart,(v korzine on)->up here ");
+                }
                 
-                $quote->addProduct($product, $post['qty']);
-                $quote->save();
-                
-                $this->messageManager->addSuccessMessage("item in cart,(v korzine on)->up here ");
             } else {
                 $this->messageManager->addErrorMessage("Prosil. Je. Simple");
                 $resultRedirect = $this->resultFactory->create(ResultFactory::TYPE_REDIRECT);
@@ -94,3 +127,4 @@
             return $resultRedirect;
         }
     }
+    
