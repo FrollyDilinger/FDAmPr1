@@ -10,7 +10,7 @@
     use Magento\Framework\Exception\NoSuchEntityException;
     use Magento\Framework\Message\ManagerInterface;
     use Magento\Framework\Event\ManagerInterface as EventManager;
-    use Amasty\FrdljModule\Model\ResourceModel\BlackListModel as BlackRes;
+    use Amasty\FrdljModule\Model\ResourceModel\BlackListModel as BlackListModelResource;
     use Amasty\FrdljModule\Model\BlackListModelFactory;
     
     class Form extends Action
@@ -34,16 +34,16 @@
          * @var EventManager
          */
         private $eventManager;
+        
         /**
          * @var BlackListModelFactory
          */
-        
         private $blackListModelFactory;
-        /**
-         * @var BlackRes
-         */
         
-        private $blackRes;
+        /**
+         * @var BlackListModelResource
+         */
+        private $blackListModelResource;
         
         public function __construct(
             Context                    $context,
@@ -52,7 +52,7 @@
             ManagerInterface           $messageManager,
             EventManager               $eventManager,
             BlackListModelFactory      $blackListModelFactory,
-            BlackRes                   $blackRes
+            BlackListModelResource                   $blackListModelResource
         )
         {
             $this->checkoutSession = $checkoutSession;
@@ -62,7 +62,7 @@
             
             parent::__construct($context);
             $this->blackListModelFactory = $blackListModelFactory;
-            $this->blackRes = $blackRes;
+            $this->blackListModelResource = $blackListModelResource;
         }
         
         public function execute()
@@ -91,14 +91,14 @@
             }
             
             $blackList = $this->blackListModelFactory->create();
-            $this->blackRes->load(
+            $this->blackListModelResource->load(
                 $blackList,
                 $post['sku'],
                 'product_sku'
             );
             
             if ($product->getTypeId() == 'simple') {
-                if ($post['sku'] === $blackList->getProduct_sku()) {
+                if ($post['sku'] === $blackList->getProductSku()) {
                     if ($post['qty'] <= $blackList->getProduct_qty()) {
                         $quote->addProduct($product, $post['qty']);
                         $quote->save();

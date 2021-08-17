@@ -5,7 +5,7 @@
     
     use Magento\Framework\Model\ResourceModel\Db\Collection\AbstractCollection;
     use Amasty\FrdljModule\Model\BlackListModel;
-    use Amasty\FrdljModule\Model\ResourceModel\BlackListModel as BlModRes;
+    use Amasty\FrdljModule\Model\ResourceModel\BlackListModel as BlackListModelResource;
     
     class Collection extends AbstractCollection
     {
@@ -13,7 +13,7 @@
         {
             $this->_init(
                 BlackListModel::class,
-                BlModRes::class
+                BlackListModelResource::class
             );
         }
     }
