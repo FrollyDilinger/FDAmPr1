@@ -1,0 +1,18 @@
+.logo img {
+    border: 20px solid #003087;
+    padding: 6px;
+    border-radius: 22px;
+}
+
+.column.main {
+    border: 20px solid #c34000;
+    padding: 10px;
+    border-radius: 30px;
+}
+
+.page-wrapper {
+    border: 10px solid red
+}
+#columnBorder{
+    border: 3px solid;
+}

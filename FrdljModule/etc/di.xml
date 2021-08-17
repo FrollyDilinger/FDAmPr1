@@ -1,0 +1,19 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Amasty\FrdljModule\Model\ResourceModel\BlackListModel\Grid\Collection"
+                 type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">Amasty_FrdljModule_blacklist</argument>
+            <argument name="resourceModel" xsi:type="string">Amasty\FrdljModule\Model\ResourceModel\BlackListModel</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="amasty_frdljModule_blacklistmodel_listing_data_source" xsi:type="string">
+                    Amasty\FrdljModule\Model\ResourceModel\BlackListModel\Grid\Collection
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

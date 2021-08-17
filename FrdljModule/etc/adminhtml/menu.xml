@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Amasty_FrdljModule::menu"
+             title="FrdljModule"
+             module="Amasty_FrdljModule"
+             sortOrder="70"
+             resource="Amasty_FrdljModule::menu"
+        />
+        <add id="Amasty_FrdljModule::blacklist"
+             title="Black List"
+             module="Amasty_FrdljModule"
+             sortOrder="10"
+             resource="Amasty_FrdljModule::blacklist"
+             parent="Amasty_FrdljModule::menu"
+             action="frdljmodule/blacklist"
+        />
+    </menu>
+</config>
