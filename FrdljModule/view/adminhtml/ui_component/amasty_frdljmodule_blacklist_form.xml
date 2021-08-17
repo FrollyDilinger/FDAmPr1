@@ -48,35 +48,35 @@
         <settings>
             <label translate="true">Black List Data</label>
         </settings>
-        <field name="product_sku" formElement="input">
+        <field name="product_sku">
             <argument name="data" xsi:type="array">
                 <item name="config" xsi:type="array">
                     <item name="label" xsi:type="string" translate="true">SKU</item>
                     <item name="visible" xsi:type="boolean">true</item>
                     <item name="dataType" xsi:type="string">text</item>
-                    <item name="formElement" xsi:type="string">textarea</item>
-                    <item name="dataScope" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">product_sku</item>
                     <item name="validation" xsi:type="array">
                         <item name="required-entry" xsi:type="boolean">true</item>
                     </item>
                 </item>
             </argument>
         </field>
-    <field name="product_qty" formElement="input">
-        <argument name="data" xsi:type="array">
-            <item name="config" xsi:type="array">
-                <item name="label" xsi:type="string" translate="true">QTY</item>
-                <item name="visible" xsi:type="boolean">true</item>
-                <item name="dataType" xsi:type="string">integer</item>
-                <item name="formElement" xsi:type="string">textarea</item>
-                <item name="dataScope" xsi:type="string">product QTY</item>
-                <item name="validation" xsi:type="array">
-                    <item name="required-entry" xsi:type="boolean">true</item>
-                    <item name="validate-zero-or-greater" xsi:type="boolean">true</item>
+        <field name="product_qty">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">QTY</item>
+                    <item name="visible" xsi:type="boolean">true</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataScope" xsi:type="string">product_qty</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                        <item name="validate-zero-or-greater" xsi:type="boolean">true</item>
+                    </item>
                 </item>
-            </item>
-        </argument>
-    </field>
+            </argument>
+        </field>
     </fieldset>
         </form>
 
